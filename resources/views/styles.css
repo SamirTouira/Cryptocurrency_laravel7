@@ -1,0 +1,11 @@
+
+.chart_div{
+    display: none;
+    width: 140%;
+
+}
+
+#bitcoin_desciption{
+    color: red;
+    background-color: red;
+}
