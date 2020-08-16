@@ -186,41 +186,23 @@
 
         </style>
 
+<script type="text/javascript">
 
+</script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      
+
+                  
+
+
+google.charts.load('current', {'packages':['corechart']});
+// google.charts.setOnLoadCallback(drawChartTwo);
+
+
      // Si une partie des fonctions des graphiques ne sont pas encore dynamique, c'est parce que je n'ai plus trouvé le temps
      //de tout faire, je m'en excuse par avance.
-    
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Current price', 'Ethereum current price'],
-          ['2020', {{$data['market_data']['current_price']['eur']}},  400],
-          ['2019',  9755,      460],
-          ['2018',  8788,       1120],
-          ['2017',  7865,      540],
-          ['2016',  7890, 100] 
-        ]);
-
-        var options = {
-          title: 'Bitcoin Performance',
-          height: 500,
-          right:200,
-          legend: {position: 'right', maxLines: 3},
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0},
-          titleTextStyle: {fontSize: 40}
-        };
-
-        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-
-
+      
     </script>
 
   </head>
@@ -245,8 +227,9 @@
   <br>
   </div>
 
-    <div id="chart_div" class="chart_bitcoin" style="width: 95%; height: 500px; display:block; position:relative;"></div>
+    <!--<div id="chart_div" class="chart_bitcoin money" data-money="bitcoin" style="width: 95%; height: 500px; display:block; position:relative;"></div>-->
    
+    <button class="button3 money" id="ethereum-graphic" data-money="bitcoin" style=""><h3 style="text-align:center; width:100%;">Bitcoin graphic</h3></button>
     <button class="button1 money" id="ethereum-graphic" data-money="ethereum"><h3 style="text-align:center; width:100%;">Ethereum graphic</h3></button>
     <button class="button2 money" id="ethereum-graphic" data-money="ripple"><h3 style="text-align:center; width:100%;">Ripple graphic</h3></button>
     <div id="show-eth-graphic">

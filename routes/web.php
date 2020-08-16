@@ -26,7 +26,10 @@ Route::get('test', function() {
     return view('test');
 });
 
+Route::get('/loader', "LoaderController@googleLoader")->name('post.loader');
+
 Route::post('/crypto', "CryptocurrencyController@index")->name('post.crypto');
+Route::post('/test', "AncientPriceController@nine")->name('post.2019');
 
 //Route::get('ajaxRequest', 'AjaxController@ajaxRequest');
 //Route::post('ajaxRequest', 'AjaxController@ajaxRequestPost')->name('ajaxRequest.post');

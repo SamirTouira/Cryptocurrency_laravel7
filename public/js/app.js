@@ -20162,8 +20162,64 @@ $(document).ready(function () {
               },
               success: function success(data) {
                 console.log(data);
-                $('#chart_div_two').show();
-                drawChartTwo(data);
+                var yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+                console.log(yesterday);
+                fetch('https://api.coingecko.com/api/v3/coins/' + crypto + '/history?date=15-08-2020&localization=false').then(function (res) {
+                  return res.json();
+                }).then(function (dater) {
+                  drawChartTwo(data, dater);
+                  $('#chart_div_two').show(); // google.charts.load('current', {'packages':['corechart']});
+
+                  google.charts.setOnLoadCallbackdrawChartTwo;
+
+                  function drawChartTwo(data, dater) {
+                    // console.log(dater.prices);
+                    // document.addEventListener('touchstart', dater, {capture: true});
+                    // dater.forEach(function(item) {
+                    // console.log(item);
+                    // if (item === 
+                    // var datas = new google.visualization.DataTable();
+                    // datas.addColumn('string', 'Topping');
+                    // datas.addColumn('number', 'Slices');
+                    // datas.addRows([
+                    //   ['current', data.market_data.current_price.eur],
+                    //   ['test', item[1]]
+                    // ]);
+                    // var date = new Date();
+                    var datas = google.visualization.arrayToDataTable([['Time', 'Prices', 'Expenses'], ['Current price', data.market_data.current_price.eur, data.market_data.current_price.btc], ['24h lastest prices', dater.market_data.current_price.eur, dater.market_data.current_price.btc]]);
+                    console.log(dater);
+                    var options = {
+                      title: "".concat(data.id[0].toUpperCase() + data.id.slice(1), " Perfomance"),
+                      width: 1800,
+                      height: 500,
+                      right: 200,
+                      legend: {
+                        position: 'right',
+                        maxLines: 3
+                      },
+                      hAxis: {
+                        title: 'Year',
+                        titleTextStyle: {
+                          color: '#333',
+                          fontSize: 20
+                        }
+                      },
+                      vAxis: {
+                        minValue: 0,
+                        gridlines: {
+                          count: 20
+                        }
+                      },
+                      areaOpacity: 0.7,
+                      colors: ['red', 'black'],
+                      explorer: {
+                        actions: ['dragToZoom', 'rightClickToReset']
+                      }
+                    };
+                    var chart = new google.visualization.AreaChart(document.getElementById('chart_div_two'));
+                    chart.draw(datas, options); // });
+                  }
+                });
               },
               error: function error(err) {
                 console.log(err);
@@ -20178,36 +20234,6 @@ $(document).ready(function () {
     }, _callee2, this);
   })));
 });
-
-function drawChartTwo(data) {
-  var datas = google.visualization.arrayToDataTable([['Year', 'Current price', 'Price change 24h'], ['Current', data.market_data.current_price.eur, data.market_data.price_change_24h], ['2019', 187.23465887218802, 0]]);
-  var options = {
-    title: "".concat(data.id[0].toUpperCase() + data.id.slice(1), " Perfomance"),
-    width: 1800,
-    height: 500,
-    right: 200,
-    legend: {
-      position: 'right',
-      maxLines: 3
-    },
-    hAxis: {
-      title: 'Year',
-      titleTextStyle: {
-        color: '#333'
-      }
-    },
-    vAxis: {
-      minValue: 0
-    },
-    titleTextStyle: {
-      fontSize: 20
-    },
-    areaOpacity: 0.7,
-    colors: ['red', 'black']
-  };
-  var chart = new google.visualization.AreaChart(document.getElementById('chart_div_two'));
-  chart.draw(datas, options);
-}
 
 /***/ }),
 
